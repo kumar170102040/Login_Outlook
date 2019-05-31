@@ -1,0 +1,200 @@
+{%extends 'student_portal/base.html'%}
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbspPersonal Information</b></span>
+{% endblock %}
+{% load static %}
+
+{%block body_block%}
+<form enctype="multipart/form-data" method="POST" onsubmit="return validateImage();">
+  {% csrf_token %}
+
+    <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Non-editable Field**</h3>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-3">
+                  <strong>Id Type:</strong><br>
+                {{ form.idType }}
+                </div>
+                <div class="col-xs-4">
+                  <strong>Id No(Roll No):</strong><br>
+                  {{ form.idNo }}
+                </div>
+                <div class="col-xs-5">
+                  <strong>Webmail:</strong>
+                  <input type="text" class="form-control" placeholder="{{ request.user }}" disabled>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-xs-3">
+                  <strong>Hostel:</strong>
+                <input type="text" class="form-control" placeholder="{{ hostelname }}" disabled>
+                </div>
+                <div class="col-xs-4">
+                  <strong>Room No:</strong>
+                  <input type="text" class="form-control" placeholder="{{ roomNo }}" disabled>
+                </div>
+              </div>
+              <br>
+
+            <small>  **contact caretaker to edit these fields</small>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <h3 class="box-title">Edit Details</h3>
+              </div>
+              <!-- /.box-header -->
+
+
+
+
+
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>
+            <div class="fieldWrapper">
+      {{ form.name.errors }}
+      {{ form.name.label_tag }}
+      {{ form.name }}
+  </div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form.gender.errors }}
+  {{ form.gender.label_tag }}
+  {{ form.gender }}
+</div>
+</td>
+</tr>
+<tr>
+
+<td>
+<div class="fieldWrapper">
+  {{ form.saORda.errors }}
+  {{ form.saORda.label_tag }}
+  {{ form.saORda }}
+</div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form.altEmail.errors }}
+  {{ form.altEmail.label_tag }}
+  {{ form.altEmail }}
+</div>
+</td>
+</tr>
+<tr>
+
+<td>
+<div class="fieldWrapper">
+  {{ form.mobNo.errors }}
+  {{ form.mobNo.label_tag }}
+  {{ form.mobNo }}
+</div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form.emgercencyNo.errors }}
+  {{ form.emgercencyNo.label_tag }}
+  {{ form.emgercencyNo }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+  <div class="fieldWrapper">
+    {{ form.photo.errors }}
+    {{ form.photo.label_tag }}
+    {{ form.photo }}
+  </div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form.idPhoto.errors }}
+  <strong>  ID-Card photo </strong>
+  {{ form.idPhoto }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+  <div class="fieldWrapper">
+    {{ form.Address.errors }}
+    {{ form.Address.label_tag }}
+    {{ form.Address }}
+  </div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form.Pincode.errors }}
+  {{ form.Pincode.label_tag }}
+  {{ form.Pincode }}
+</div>
+</td>
+
+</tr>
+<tr>
+  <td>
+  <div class="fieldWrapper">
+    {{ form.bankName.errors }}
+    {{ form.bankName.label_tag }}
+    {{ form.bankName }}
+  </div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form.bankAccount.errors }}
+  <strong> Bank Account No:</strong>
+  {{ form.bankAccount }}
+</div>
+</td>
+
+</tr>
+<tr>
+  <td>
+  <div class="fieldWrapper">
+    {{ form.IFSCCode.errors }}
+    {{ form.IFSCCode.label_tag }}
+    {{ form.IFSCCode }}
+  </div>
+  </td>
+  <td>
+  <div class="fieldWrapper">
+    {{ form.accHolderName.errors }}
+    {{ form.accHolderName.label_tag }}
+    {{ form.accHolderName }}
+  </div>
+</td>
+</tr>
+      </tbody>
+  </table>
+  <button type="submit"  class="save btn btn-primary">Save</button>
+    </form>
+
+
+                <!-- /.row -->
+
+              <!-- /.box-body -->
+
+            </div>
+
+
+
+
+
+{%endblock%}
+
+<script type="text/javascript">
+$(function () {
+  $('input,textarea,select').filter('[required]:visible').parent().parent().find("label").addClass("required");
+});
+
+</script>

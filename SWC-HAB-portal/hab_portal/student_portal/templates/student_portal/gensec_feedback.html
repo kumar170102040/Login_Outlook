@@ -1,0 +1,264 @@
+{%extends 'student_portal/base.html'%}
+
+
+{%block body_block%}
+
+<style>
+.mess {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.mess td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.mess th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+
+.mess tr:nth-child(even){background-color: #f2f2f2;}
+
+.mess tr:hover {background-color: #ddd;}
+
+.mess th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<br>
+<h2>
+  <div style="text-align:center">
+      <h4>{% if messages %}
+          <div class="alert alert-success fade in">
+             <a href="#" class="close" data-dismiss="alert">&times;</a>
+                  <strong>SUCCESS! </strong>
+                  {% for message in messages %}
+                     {{ message }}
+                  {% endfor %}
+          </div>
+      {% endif %}</h4>
+  </div>
+
+
+
+  {% if not feedback_ON_OFF %}
+
+  {% else %}
+
+  <div style="text-align:center">
+    <h2>
+      <script>
+        n =  new Date();
+        y = n.getFullYear();
+        m = n.getMonth();
+        m = m-1;
+        if (m<0){
+          m=11;
+          y=y-1;
+        }
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+
+
+        document.write(" Mess Feedback Form for " + monthNames[{{mth}}-1] + " " + {{yr}});
+
+      </script>
+      </h2>
+  </div>
+
+  <hr>
+
+  <div class="modal-body row">
+            <div class = "col-md-4">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-red"><i class="ion ion-ios-people-outline"></i></span>
+
+                        <div class="info-box-content">
+                          <span class="info-box-text">NO. OF FEEDBACKS :</span>
+                          <span class="info-box-number">{{messfeedback_count}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+            </div>
+            <div class = "col-md-4">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people-outline"></i></span>
+
+                        <div class="info-box-content">
+                          <span class="info-box-text">NO. OF EXTERNAL SUBSCRIBERS :</span>
+                          <span class="info-box-number">{{mess_subscribed_external}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+            </div>
+            <div class = "col-md-4">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                        <div class="info-box-content">
+                          <span class="info-box-text">NO. OF SUBSCRIBERS FROM YOUR <br> HOSTEL TO OTHER HOSTEL MESSES :</span>
+                          <span class="info-box-number">{{mess_unsubscribed_internal}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+            </div>
+  </div>
+
+
+  {% endif %}
+
+
+
+  {% if not feedback_ON_OFF %}
+
+  {% else %}
+  <div class="panel panel-default panel-body">
+      <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" name="form_raw_materials">
+        {% csrf_token %}
+
+            <span style=text-align:center> <h3>Give raw materials quality feedback </h3></span>
+            <hr>
+              <div class="form-group col-md-12">
+                     <h4>
+                      <div class ="col-md-2">
+                        <span class="test-danger small"> {{ form.raw_materials_quality.errors }} </span>
+                      </div>
+                      <label class="control-label col-md-4"> {{ form.raw_materials_quality.label_tag }}</label>
+                      <div class="col-md-4"> {{form.raw_materials_quality}} </div>
+                      <div class="ccol-md-2">  <button type="submit" class="btn btn-success" name="btn1"> Submit </button> </div>
+                    </h4>
+              </div>
+      </form>
+  </div>
+
+  {% endif %}
+
+
+<div  id="div_export_feedback" class="panel panel-default panel-body">
+            <span style=text-align:center>  <h3>Export Feedbacks</h3>  </span>
+
+            <form name="export_feedbacks_each_hostel" id="export_feedbacks_each_hostel" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                    <table class="table  mess">
+                        <tr>
+                          <th> Select a Month </th>
+                          <th> Select a Year </th>
+                          <th> Export Feedback ( as .csv )</th>
+                          <th> Export Feedback ( as .xls )</th>
+
+
+                        </tr>
+
+                        <tr>
+
+
+                            <td>
+                                      <select id='gMonth1' required name='month_val'>
+                                          <option value=''>--Select Month--</option>
+                                          <option value='1'>January</option>
+                                          <option value='2'>February</option>
+                                          <option value='3'>March</option>
+                                          <option value='4'>April</option>
+                                          <option value='5'>May</option>
+                                          <option value='6'>June</option>
+                                          <option value='7'>July</option>
+                                          <option value='8'>August</option>
+                                          <option value='9'>September</option>
+                                          <option value='10'>October</option>
+                                          <option value='11'>November</option>
+                                          <option value='12'>December</option>
+                                    </select>
+                            </td>
+                          <td>
+                              <select id="year1" required name='year_val'></select>
+                              <script type="text/javascript">
+                                var start = new Date().getFullYear()-1;;
+                                var end = new Date().getFullYear() + 2;
+                                var options = "";
+                                options = "<option>"+ '--Select Year--' +"</option>"
+                                for(var year = start ; year <=end; year++){
+                                options += "<option>" + year +"</option>";
+                                }
+                                document.getElementById("year1").innerHTML =  options ;
+                              </script>
+
+                          </td>
+
+
+                                  <td><button type="submit" class="btn btn-info" method="post" name="btn2">Export as .csv</button></td>
+                                  <td><button type="submit" class="btn btn-info" method="post" name="btn3">Export as .xls</button> </td>
+
+                            </tr>
+
+              </table>
+        </form>
+</div>
+<br><hr>
+<div id='calculate_opi' class="panel panel-default panel-body">
+        <span style="text-align:center">
+                <h3> Calculate OPI Score </h3>
+        </span>
+        <form class="" action=""  method="post" name="form_calculate_opi">
+        {% csrf_token %}
+                      <table class="mess">
+                        <tr>
+                          <td><div>
+                                      <select id='month2' required name='month2_val'>
+                                          <option value=''>--Select Month--</option>
+                                          <option value='1'>January</option>
+                                          <option value='2'>February</option>
+                                          <option value='3'>March</option>
+                                          <option value='4'>April</option>
+                                          <option value='5'>May</option>
+                                          <option value='6'>June</option>
+                                          <option value='7'>July</option>
+                                          <option value='8'>August</option>
+                                          <option value='9'>September</option>
+                                          <option value='10'>October</option>
+                                          <option value='11'>November</option>
+                                          <option value='12'>December</option>
+                                  </select>
+                            </div>
+                        </td>
+                        <td>
+                          <select id='year2' required name='year2_val'>
+                              <option value=''>--Select Year--</option>
+                              <option value='2018'>2018 </option>
+                          </select>
+
+                        </td>
+                          <td> <button type="submit" class="btn btn-success" name="btn_opi"> calculate OPI </button></td>
+                        </tr>
+                      </table>
+        </form>
+      {% if opi_hostel %}
+      <table class="table table-responsive table-bordered mess">
+        <thead> <th> Hostel Name </th>       <th>      {{opi_hostel.hostelName}}        </th>            </thead>
+        <tr> <td> <b>  Year </b> </td>      <td> {{opi_hostel.year}} </td>  </tr>
+        <tr> <td> <b> Month  </b> </td>      <td> {{opi_hostel.month}} </td>  </tr>
+        <tr> <td> <b> Cleaniness and Hygiene </b> </td>      <td> {{opi_hostel.cleanliness_av}} </td>  </tr>
+        <tr> <td> <b> Catering and Punctuality </b> </td>      <td> {{opi_hostel.catering_av}} </td>  </tr>
+        <tr> <td> <b> Breakfast Quality  </b> </td>      <td> {{opi_hostel.breakfast_quality_av}} </td>  </tr>
+        <tr> <td> <b> Lunch Qulaity </b> </td>      <td> {{opi_hostel.lunch_quality_av}} </td>  </tr>
+        <tr> <td> <b> Dinner Quality </b> </td>      <td> {{opi_hostel.dinner_quality_av}} </td>  </tr>
+        <tr> <td> <b>  Raw Materials Quality </b> </td>      <td> {{opi_hostel.raw_materials_quality}} </td>  </tr>
+        <tr> <td> <b> No of feedback </b> </td>      <td> {{opi_hostel.numberOfFeedback}} </td>  </tr>
+
+
+        <tr>   <td> <b> OPI score </b>   </td>                                  <td> {{opi_hostel.opi_value}} </td> </tr>
+        </tr>
+      </table>
+      {% endif %}
+
+</div>
+
+{%endblock%}

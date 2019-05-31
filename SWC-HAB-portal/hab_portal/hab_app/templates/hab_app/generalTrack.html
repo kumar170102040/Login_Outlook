@@ -1,0 +1,25 @@
+{% extends 'hab_app/generalView.html' %}
+{% block body_block %}
+
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>ApplicantId</th>
+        <th>Approval Of Chr Hab</th>
+        <th>Comments</th>
+    </tr>
+</thead>
+
+<tbody>
+  {% for i in applicants %}
+  <tr>
+        <td>{{ i.guestname }}</td>
+        <td>{{ i.id_no }}</td>
+        <td>{{ i.isApprovedChr }}</td>
+        <td>{{ i.comments }}</td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+
+{% endblock %}

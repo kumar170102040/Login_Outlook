@@ -1,0 +1,40 @@
+{% extends "hab_app/caretakerView.html" %}
+{% block body_block %}
+
+<thead>
+    <tr>
+        <th>Room No</th>
+        <th>Id Type</th>
+        <th>Id No</th>
+        <th>Name</th>
+        <th>Bank Name</th>
+        <th>Bank Account No </th>
+        <th> Bank IFSC Code</th>
+        <th>webmail</th>
+        <th>Contact</th>
+         {% if permission %}
+        <th>Approve Info</th>
+        {% endif %}
+    </tr>
+</thead>
+
+<tbody>
+  {% for i,j in zipped %}
+  <tr>
+        <td>{{ j.roomNo }}</td>
+        <td>{{ i.idType }}</td>
+        <td>{{ i.idNo }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{i.bankName}}</td>
+        <td>{{i.bankAccount}} </td>
+        <td>{{i.IFSCCode}}</td>
+        <td>{{ i.webmail }}</td>
+        <td>{{ i.mobNo }}</td>
+        {%if permission%}
+        <td><a class="btn btn-primary" href="{% url 'hab_app:caretakerapproveinfo' %}?param={{i.idNo}}" role="button">Details</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</tbody>
+
+{% endblock %}

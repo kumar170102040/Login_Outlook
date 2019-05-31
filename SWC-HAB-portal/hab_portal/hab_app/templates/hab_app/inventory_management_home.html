@@ -1,0 +1,227 @@
+{% extends "hab_app/chrViewUpdated.html" %}
+{% if permission2 %}
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp Inventory Management</b></span>
+{% endblock %}
+
+{% block body_block %}
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="box box-primary collapsed-box box-solid">
+                        <div class="box-header with-border" style="text-align: center">
+                            <h3 class="box-title">Overall Overview</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body" style="text-align: center">
+                            <td><a class="btn btn-danger" href="{% url 'hab_app:damaged_inventory_details' 'All' 'All' %}">View Damage Details</a>&nbsp&nbsp
+                                <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' 'All' 'All' %}">View Details</a>
+                            </td>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <hr>
+{#   ----------------------------------------------------------------------------------------------------------------------------------------------------------#}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box box-success collapsed-box box-solid">
+                        <div class="box-header with-border" style="text-align: center">
+                            <h3 class="box-title">Hostels</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body no-padding">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th> <span> </span></th>
+                                    <td><a class="btn btn-danger" style="margin-left: 30px;" href="{% url 'hab_app:damaged_inventory_details' 'Hostel' 'All' %}">Overall Damage Details</a>&nbsp&nbsp
+                                        <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' 'Hostel' 'All' %}">Overall Details</a>
+                                    </td>
+                                </tr>
+                            {% for obj in list %}
+                                {% ifequal obj.category "Hostel" %}
+                                    <tr>
+                                        <th><a href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}"> <span> {{ obj.sub_category }}</span></a></th>
+                                        <td><a class="btn btn-danger" style="margin-left: 230px;" href="{% url 'hab_app:damaged_inventory_details' obj.category obj.sub_category %}">Damage Details</a>&nbsp&nbsp
+                                            <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}">Details</a>
+                                        </td>
+                                    </tr>
+                                {% endifequal %}
+                            {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-success box-default collapsed-box box-solid">
+                        <div class="box-header with-border" style="text-align: center">
+                            <h3 class="box-title">Academic Complex</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th> <span> </span></th>
+                                    <td><a class="btn btn-danger" style="margin-left: 30px;" href="{% url 'hab_app:damaged_inventory_details' 'Academic Complex' 'All' %}">Overall Damage Details</a>&nbsp&nbsp
+                                        <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' 'Academic Complex' 'All' %}">Overall Details</a>
+                                    </td>
+                                </tr>
+                            {% for obj in list %}
+                                {% ifequal obj.category "Academic Complex" %}
+                                    <tr>
+                                        <th><a href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}"> <span> {{ obj.sub_category }}</span></a></th>
+                                        <td><a class="btn btn-danger" style="margin-left: 230px;" href="{% url 'hab_app:damaged_inventory_details' obj.category obj.sub_category %}">Damage Details</a>&nbsp&nbsp
+                                            <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}">Details</a>
+                                        </td>
+                                    </tr>
+                                {% endifequal %}
+                            {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-success box-default collapsed-box box-solid">
+                        <div class="box-header with-border" style="text-align: center">
+                            <h3 class="box-title">Sports</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th> <span> </span></th>
+                                    <td><a class="btn btn-danger" style="margin-left: 30px;" href="{% url 'hab_app:damaged_inventory_details' 'Sports' 'All' %}">Overall Damage Details</a>&nbsp&nbsp
+                                        <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' 'Sports' 'All' %}">Overall Details</a>
+                                    </td>
+                                </tr>
+                            {% for obj in list %}
+                                {% ifequal obj.category "Sports" %}
+                                    <tr>
+                                        <th><a href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}"> <span> {{ obj.sub_category }}</span></a></th>
+                                        <td><a class="btn btn-danger" style="margin-left: 230px;" href="{% url 'hab_app:damaged_inventory_details' obj.category obj.sub_category %}">Damage Details</a>&nbsp&nbsp
+                                            <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}">Details</a>
+                                        </td>
+                                    </tr>
+                                {% endifequal %}
+                            {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{# ---------------------------------------------------------------------------------------------------------------------------------------------------------- #}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box box-success box-default collapsed-box box-solid">
+                        <div class="box-header with-border" style="text-align: center">
+                            <h3 class="box-title">Lecture Halls</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool"  data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th> <span> </span></th>
+                                    <td><a class="btn btn-danger" style="margin-left: 30px;" href="{% url 'hab_app:damaged_inventory_details' 'Lecture Hall' 'All' %}">Overall Damage Details</a>&nbsp&nbsp
+                                        <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' 'Lecture Hall' 'All' %}">Overall Details</a>
+                                    </td>
+                                </tr>
+                            {% for obj in list %}
+                                {% ifequal obj.category "Lecture Hall" %}
+                                    <tr>
+                                        <th><a href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}"> <span> {{ obj.sub_category }}</span></a></th>
+                                        <td><a class="btn btn-danger" style="margin-left: 230px;" href="{% url 'hab_app:damaged_inventory_details' obj.category obj.sub_category %}">Damage Details</a>&nbsp&nbsp
+                                            <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}">Details</a>
+                                        </td>
+                                    </tr>
+                                {% endifequal %}
+                            {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-success box-default collapsed-box box-solid">
+                        <div class="box-header with-border" style="text-align: center">
+                            <h3 class="box-title">Conference Hall</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th> <span> </span></th>
+                                    <td><a class="btn btn-danger" style="margin-left: 30px;" href="{% url 'hab_app:damaged_inventory_details' 'Conference Hall' 'All' %}">Overall Damage Details</a>&nbsp&nbsp
+                                        <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' 'Conference Hall' 'All' %}">Overall Details</a>
+                                    </td>
+                                </tr>
+                            {% for obj in list %}
+                                {% ifequal obj.category "Conference Hall" %}
+                                    <tr>
+                                        <th><a href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}"> <span> {{ obj.sub_category }}</span></a></th>
+                                        <td><a class="btn btn-danger" style="margin-left: 230px;" href="{% url 'hab_app:damaged_inventory_details' obj.category obj.sub_category %}">Damage Details</a>&nbsp&nbsp
+                                            <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}">Details</a>
+                                        </td>
+                                    </tr>
+                                {% endifequal %}
+                            {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-success box-default collapsed-box box-solid">
+                        <div class="box-header with-border" style="text-align: center">
+                            <h3 class="box-title">New SAC</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th> <span> </span></th>
+                                    <td><a class="btn btn-danger" style="margin-left: 30px;" href="{% url 'hab_app:damaged_inventory_details' 'New SAC' 'All' %}">Overall Damage Details</a>&nbsp&nbsp
+                                        <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' 'New SAC' 'All' %}">Overall Details</a>
+                                    </td>
+                                </tr>
+                            {% for obj in list %}
+                                {% ifequal obj.category "New SAC" %}
+                                    <tr>
+                                        <th><a href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}"> <span> {{ obj.sub_category }}</span></a></th>
+                                        <td><a class="btn btn-danger" style="margin-left: 230px;" href="{% url 'hab_app:damaged_inventory_details' obj.category obj.sub_category %}">Damage Details</a>&nbsp&nbsp
+                                            <a class="btn btn-primary" href="{% url 'hab_app:inventory_details' obj.category obj.sub_category %}">Details</a>
+                                        </td>
+                                    </tr>
+                                {% endifequal %}
+                            {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ {# ---------------------------------------------------------------------------------------------------------------------------------------------------------- #}
+        </section>
+    </div>
+
+
+{% endblock %}
+{% endif %}

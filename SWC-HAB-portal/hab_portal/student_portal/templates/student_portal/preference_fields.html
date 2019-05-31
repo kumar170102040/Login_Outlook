@@ -1,0 +1,73 @@
+<div style=text-align:center>
+    <!-- <div class="form-group">
+      <div class ="col-sm-offset-2 col-sm-10">
+        <span class="test-danger small"> {{ form.hostelName.errors }} </span>
+      </div>
+      <label class="control-label col-sm-2"> {{ form.hostelName.label_tag }}</label>
+      <div class="col-sm-10"> {{form.hostelName}} </div>
+    </div> -->
+    <br>
+
+    <!-- <div class="form-group">
+      <div class ="col-sm-offset-2 col-sm-10">
+        <span class="test-danger small"> {{ form.username.errors }} </span>
+      </div>
+      <label class="control-label col-sm-2"> {{ form.username.label_tag }}</label>
+      <div class="col-sm-10"> {{form.username}} </div>
+    </div>
+    <br><br> -->
+
+    <div class="form-group">
+      <label class="control-label col-sm-2"> Base Hostel</label>
+      <div class="col-sm-10"> {{form.hostelName.as_hidden}} </div>
+      <div class="col-sm-10"> {{form.hostelName.value}} </div>
+    </div>
+    <br>
+    <hr>
+    {{form.roomNo.as_hidden}}
+    {{form.student_id.as_hidden}}
+    {{form.student_name.as_hidden}}
+    <div class="form-group">
+      <label class="control-label col-sm-2"> Year</label>
+      <div class="col-sm-10"> {{form.year.as_hidden}} </div>
+      <div class="col-sm-10"> {{form.year.value}} </div>
+    </div>
+    <br>
+    <hr>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2"> Month</label>
+      <div class="col-sm-10"> {{form.month.as_hidden}} </div>
+      <div class="col-sm-10"> {{form.month.value}} </div>
+    </div>
+    <br>
+    <hr>
+    <div class="form-group">
+      <div class ="col-sm-offset-2 col-sm-10">
+        <span class="test-danger small"> {{ form.h1.errors }} </span>
+      </div>
+      <label class="control-label col-sm-2"> First Preference</label>
+      <div class="col-sm-10"> {{form.h1}} </div>
+    </div>
+    <br>
+    <hr>
+    <div class="form-group">
+      <div class ="col-sm-offset-2 col-sm-10">
+        <span class="test-danger small"> {{ form.h2.errors }} </span>
+      </div>
+      <label class="control-label col-sm-2"> Second Preference</label>
+      <div class="col-sm-10"> {{form.h2}} </div>
+    </div>
+    <br><br>
+    <hr>
+    <div class="form-group">
+      <div class ="col-sm-offset-2 col-sm-10">
+        <span class="test-danger small"> {{ form.h3.errors }} </span>
+      </div>
+      <label class="control-label col-sm-2"> Third Preference</label>
+      <div class="col-sm-10"> {{form.h3}} </div>
+    </div>
+    <br>
+    <br>
+    <hr>
+</div>

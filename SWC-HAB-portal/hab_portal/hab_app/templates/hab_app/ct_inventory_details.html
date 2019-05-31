@@ -1,0 +1,68 @@
+{% extends "hab_app/caretakerViewUpdated.html" %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbspInventory Details of {{ item_list.0.alloted_location_subcategory }}</b></span>
+{% endblock %}
+
+{% block body_block %}
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="box-header">
+                                <div style="text-align: center"><h4><u><b>{{ item_list.0.alloted_location_subcategory }}</b></u></h4></div>
+                            </div>
+
+                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary" method="post" name="btn1" > Add Entry</button>
+                            </form>
+                        <hr>
+                        </div>
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Item Name</th>
+                                        <th>Purchase Order Number</th>
+                                        <th>Order Placed Date</th>
+                                        <th>Bill Number</th>
+                                        <th>Receipt Date</th>
+                                        <th>Quantity</th>
+                                        <th>Total Amount</th>
+                                        <th>Supplier Name</th>
+                                        <th>Details</th>
+                                        <th>Report Damage</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for i in item_list %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ i.item_name }}</td>
+                                        <td>{{ i.purchase_order_no }}</td>
+                                        <td>{{ i.purchase_date }}</td>
+                                        <td>{{ i.bill_no }}</td>
+                                        <td>{{ i.receipt_date }}</td>
+                                        <td>{{ i.quantity }}</td>
+                                        <td>{{ i.total_cost }}</td>
+                                        <td>{{ i.supplier_name }}</td>
+                                        <td><a href="{% url 'hab_app:inventory_fullDetails'%}?param={{ i.purchase_order_no }}">Details</a></td>
+                                        <td><a href="{% url 'hab_app:inventory_fullDetails'%}?param4={{ i.purchase_order_no }}" class="btn btn-danger">Report Damage</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "hab_app/chrView.html" %}
+
+{# load staticfiles #}
+{% block body_block %}
+
+<form enctype="multipart/form-data" method="post" onsubmit="return validateImage();">
+  {% csrf_token %}
+  <table class="table table-striped">
+    <tbody>
+      {{ form.as_table }}
+    </tbody>
+  </table>
+  <input type="submit" name="ap" value="Approve" class="btn btn-primary">
+  <input type="submit" name="dp" value="Disapprove" class="btn btn-primary">
+</form>
+
+{% endblock %}

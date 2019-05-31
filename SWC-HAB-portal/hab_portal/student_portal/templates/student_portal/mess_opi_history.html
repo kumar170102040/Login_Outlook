@@ -1,0 +1,102 @@
+{% extends 'student_portal/baseUpdated.html' %}
+{% block body_block %}
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="box">
+            <div class="row">
+                <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="col-md-12" style="text-align: center">
+                        <label class="control-label" style="text-align: center" for="month1"> Month</label>
+                        <select id='month1' required name='month_val'>
+                            <option value=''>--Select Month--</option>
+                            <option value='1'>January</option>
+                            <option value='2'>February</option>
+                            <option value='3'>March</option>
+                            <option value='4'>April</option>
+                            <option value='5'>May</option>
+                            <option value='6'>June</option>
+                            <option value='7'>July</option>
+                            <option value='8'>August</option>
+                            <option value='9'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option value='12'>December</option>
+                        </select>
+                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <label class="control-label " style="text-align: center" for="year1"> Year</label>
+                        <select id="year1" required name='year_val'></select>
+                          <script type="text/javascript">
+                            var end = new Date().getFullYear();
+                            var start = new Date().getFullYear() - 3;
+                            var options = "";
+                            options = "<option>"+ '--Select Year--' +"</option>";
+                            for(var year = end ; year >=start; year--){
+                            options += "<option>" + year +"</option>";
+                            }
+                            document.getElementById("year1").innerHTML =  options ;
+                          </script>
+                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <button type="submit" class="btn btn-primary" name="btn1"> Search </button>
+                    </div>
+                </form>
+            </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+
+          <!-- /.box -->
+
+          <div class="box">
+            <div class="box-header">
+                <div style="text-align: center"><h4><u><b>{{ month }}, {{ year }}</b></u></h4></div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Hostel</th>
+                        <th>OPI</th>
+                        <th>Breakfast Quality</th>
+                        <th>Lunch Quality</th>
+                        <th>Dinner quality</th>
+                        <th>Raw Material Quality (out of 5)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                  {% for i in mess_list %}
+                  <tr>
+                        <td>{{ i.hostelName }}</td>
+                        <td>{{ i.opi_value }}</td>
+                        <td>{{ i.breakfast_quality_av }}</td>
+
+                        <td>{{ i.lunch_quality_av }}</td>
+
+                        <td>{{ i.dinner_quality_av }}</td>
+                        <td>{{ i.raw_materials_quality }}</td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+{% endblock %}

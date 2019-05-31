@@ -1,0 +1,46 @@
+{% extends "hab_app/chrView.html" %}
+{% block body_block %}
+
+<div class="container container-fluid">
+
+  <thead>
+      <tr>
+          <th>Room No.</th>
+          <th>Room Occupancy Type</th>
+          <th>Floor Info</th>
+          <th>Room Status</th>
+          <th>Room Occupancy gender</th>
+          <th>comments</th>
+          <th> Edit</th>
+          <th> Delete</th>
+
+      </tr>
+  </thead>
+
+  <tbody>
+    {% for i in roomdetailslist %}
+    <tr>
+          <td>{{ i.roomNo }}</td>
+          <td>{{ i.roomOccupancyType }}</td>
+          <td>{{ i.floorInfo }}</td>
+          <td>{{ i.roomStatus }}</td>
+          <td>{{ i.roomOccupancyGender}}</td>
+          <td>{{ i.comments}}</td>
+          <td><a class="btn btn-primary" href="{% url 'hab_app:chrRoomDetailsEdit2' hostel_name=hostelname %}?param2={{i.roomNo}}" role="button">Edit</a></td>
+          <td><a class="btn btn-danger" href="{% url 'hab_app:chrRoomDelete' hostel_name=hostelname %}?param3={{i.roomNo}}" role="button">Delete</a></td>
+
+
+
+      </tr>
+      {% endfor %}
+  </tbody>
+
+  <a href="{% url 'hab_app:chrRoomAdd' hostel_name=hostelname %}"> <button class="btn btn-success" >Add A Room</button> </a>
+</div>
+
+
+
+
+
+
+{% endblock %}

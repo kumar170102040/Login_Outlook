@@ -1,0 +1,245 @@
+{% extends "hab_app/chrView.html" %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp Mess Import Export Files</b></span>
+{% endblock %}
+
+{% block body_block %}
+{% load my_tags %}
+<style>
+#mess {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#mess td, #mess th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#mess tr:nth-child(even){background-color: #f2f2f2;}
+
+#mess tr:hover {background-color: #ddd;}
+
+#mess th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+
+
+
+  <div class="box-header">
+    <div style=text-align:center>
+    <br>
+    <h2 class="box-title">SELECT APPROPIATE FIELDS AND PROCEED TO EXPORT AND IMPORT FILE OPTIONS</h2>
+    </div>
+  </div>
+
+  <div class="box box-info">
+
+     <div class="box-body">
+        <form  name="form_export_feedback_preference" id="form_export_feedback_preference" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div style=text-align:center>
+
+              <div class="form-group">
+                <div class ="col-sm-offset-2 col-sm-10">
+                  <span class="test-danger small"> {{ form.hostelName.errors }} </span>
+                </div>
+                <label class="control-label col-sm-2"> {{ form.hostelName.label_tag }}</label>
+                <div class="col-sm-10">{{form.hostelName}} </div>
+              </div>
+              <br><hr>
+              <div class="form-group">
+                <div class ="col-sm-offset-2 col-sm-10">
+                  <span class="test-danger small"> {{ form.month.errors }} </span>
+                </div>
+                <label class="control-label col-sm-2"> {{ form.month.label_tag }}</label>
+                <div class="col-sm-10">{{form.month}} </div>
+              </div>
+              <br><hr>
+
+              <div class="form-group">
+                <div class ="col-sm-offset-2 col-sm-10">
+                  <span class="test-danger small"> {{ form.year.errors }} </span>
+                </div>
+                <label class="control-label col-sm-2"> {{ form.year.label_tag }}</label>
+                <div class="col-sm-10">{{form.year}} </div>
+              </div>
+
+
+
+        </div>
+
+          <table id="mess">
+                <tr>
+                  <th>Feedback</th>
+                  <th>Preference</th>
+                  <th> Final Mess Preference List</th>
+                </tr>
+                <tr>
+                  <td><button type="submit" class="btn btn-info" method="post" name="btn_feedback_csv">Export as .csv</button>(EXPORT MESS-FEEDBACKS AS CSV)</td>
+                  <td><button type="submit" class="btn btn-info" method="post" name="btn_preference_csv">Export as .csv</button>(EXPORT MESS-PREFERENCE AS CSV)</td>
+                  <td><button type="submit" class="btn btn-info" method="post" name="btn_mess_csv">Export as .csv</button>(EXPORT MESS-PREFERENCE AS CSV)</td>
+                </tr>
+                <tr>
+                  <td><button type="submit" class="btn btn-info" method="post" name="btn_feedback_xls">Export as .xls</button>(EXPORT MESS-FEEDBACKS AS XLS)</td>
+                  <td><button type="submit" class="btn btn-info" method="post" name="btn_preference_xls">Export as .xls</button>(EXPORT MESS-PREFERENCE AS XLS)</td>
+                  <td><button type="submit" class="btn btn-info" method="post" name="btn_mess_xls">Export as .xls</button>(EXPORT MESS-PREFERENCE AS XLS)</td>
+                </tr>
+
+
+          </table>
+
+
+          <div class="text">
+            <script type="text/javascript">
+            $("#text").prepend("<li><strong>"+json.text+"</strong> - <em> "+json.text+"</em> - <span> "+json.created+"</span></li>");
+            console.log("success");
+            </script>
+          </div>
+
+          <div class="box-header">
+            <div style=text-align:center>
+            <br>
+            <h2 class="box-title">IMPORT FINAL MESS-PREFERENCE AS CSV</h2>
+            </div>
+          </div>
+
+
+      </form>
+
+
+
+
+        <div class="box box-info">
+            <div class="col-md-12">
+              <div class="box-body">
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-info" method="post" name="btn6"> Download sample </button> <p><small>** follow the sample csv pattern strictly !</small></p>
+
+                </form>
+
+                <form name="form_upload_final_preference" id="form_upload_final_preference" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+
+
+                <br><hr>
+                <table id="mess">
+                  <tr>
+                    <td><div id="head1">
+                    <select id='gMonth1' required name='month_val'>
+                <option value=''>--Select Month--</option>
+                <option value='1'>January</option>
+                <option value='2'>February</option>
+                <option value='3'>March</option>
+                <option value='4'>April</option>
+                <option value='5'>May</option>
+                <option value='6'>June</option>
+                <option value='7'>July</option>
+                <option value='8'>August</option>
+                <option value='9'>September</option>
+                <option value='10'>October</option>
+                <option value='11'>November</option>
+                <option value='12'>December</option>
+                </select>
+                </div></td>
+                <td>
+                  <select id="year1" required name='year_val'></select>
+                      <script type="text/javascript">
+                        var start = new Date().getFullYear();;
+                        var end = new Date().getFullYear() + 2;
+                        var options = "";
+                        options = "<option>"+ '--Select Year--' +"</option>"
+                        for(var year = start ; year <=end; year++){
+                        options += "<option>" + year +"</option>";
+                        }
+                        document.getElementById("year1").innerHTML =  options ;
+                      </script>
+
+                </td>
+                    <td align="center">    <input type="file" name="myfile"> <br><button id="id_btn5" type="submit" class="btn btn-info" name="btn5">Upload csv</button> </td>
+
+                  </tr>
+                </table>
+
+              </form>
+              </div>
+            </div>
+          </div>
+      <div class="">
+
+        {% if text_type == 'str' %}
+          {{text}}
+        {% elif text_type == 'dict' %}
+            <table>
+              {% for key, value in text %}
+                    <tr>
+                        <td>{{key}}</td>
+                        <td>{{value}}</td>
+                    </tr>
+              {% endfor %}
+            </table>
+        {% else %}
+            {{text}}
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+    <div class="col-md-12">
+    <div style=text-align:center>
+      <!-- <div class="box box-info"> -->
+
+      </div>
+      <div class="box-body">
+
+
+
+
+      </div>
+    </div>
+    </div>
+
+
+<br><br>
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+<!-- <script>
+   $("#id_btn5").onclick(function () {
+
+     var input_file = document.forms['form_upload_final_preference'].elements['myfile'];
+
+     $.ajax({
+       url: '/import_file_check/',
+       data: {
+         'input_file': input_file
+       },
+       dataType: 'json',
+       success: function (data) {
+         if (data.is_taken) {
+           alert("A user with this username already exists.");
+         }
+       }
+     });
+
+   });
+ </script> -->
+

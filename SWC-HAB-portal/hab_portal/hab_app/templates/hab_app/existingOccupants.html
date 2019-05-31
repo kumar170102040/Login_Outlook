@@ -1,0 +1,118 @@
+{% extends "hab_app/caretakerViewUpdated.html" %}
+{% block body_block %}
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <!-- /.box -->
+
+
+
+            <!-- /.box-header -->
+            <div class="box">
+
+
+            <div  class="box-body table-responsive padding">
+            {% if permission %}
+            <form class="form-horizontal" action="{% url 'hab_app:existingOccupants' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <button type="submit" class="btn btn-primary" method="post" name="btn_details_xls">Student's Personal Details(.xls)</button>
+                <button type="submit" class="btn btn-primary" method="post" name="btn_room_details_xls"> Student's Room Details(.xls)</button>
+            </form>
+
+             <hr>
+             {% endif %}
+             <div><label for="myCheck">Students with Incomplete Bank Details only &nbsp</label><input type="checkbox" id="myCheck" onclick="myFunction()"></div>
+            <hr>
+
+              <table id="example1" style="table-border : 10px" class="table table-hover">
+                <thead>
+                      <tr>
+                          <th>Room No.</th>
+                          <th>Occupant Name</th>
+                          <th>Occupant ID No</th>
+                          <th>Bank Account No</th>
+                          <th>IFSC Code</th>
+                          <th>Webmail Id</th>
+                          <th>Contact</th>
+                          <th>Details</th>
+                          {% if permission %}
+                          <th>Edit Details</th>
+                          {% endif %}
+                      </tr>
+                  </thead>
+
+                  <tbody>
+                          {% for i,j in zipped %}
+                              {% if j.flag %}
+                                  <tr id="yes">
+                                      <td bgcolor= "#00ff00">{{ i.roomNo }}</td>
+                                      <td id="no">{{ j.name }}</td>
+                                      <td>{{ i.occupantId }}</td>
+                                      <td>{{ j.bankAccount }}</td>
+                                      <td>{{ j.IFSCCode}}</td>
+                                      <td>{{ j.webmail}}</td>
+                                      <td>{{j.mobNo}}</td>
+                                      <td><a href="{% url 'hab_app:showDetails' %}?param={{ i.occupantId }}" onclick="showDetail(this)" id = "{{ i.occupantId }}">Details</a></td>
+                                      {% if permission  %}
+                                      <th><a class = "btn btn-warning btn-sm"href="{% url 'hab_app:editOccupantDetails' %}?param={{ i.occupantId }}" onclick="showDetail(this)" id = "{{ i.occupantId }}">Edit Details</a></th>
+                                      {% endif %}
+                                  </tr>
+                              {% else %}
+                                  <tr id="no">
+                                      <td bgcolor= "#FF0000">{{ i.roomNo }}</td>
+                                      <td id="no">{{ j.name }}</td>
+                                      <td>{{ i.occupantId }}</td>
+                                      <td>{{ j.bankAccount }}</td>
+                                      <td>{{ j.IFSCCode}}</td>
+                                      <td>{{ j.webmail}}</td>
+                                      <td>{{j.mobNo}}</td>
+                                      <td><a href="{% url 'hab_app:showDetails' %}?param={{ i.occupantId }}" onclick="showDetail(this)" id = "{{ i.occupantId }}">Details</a></td>
+                                      {% if permission %}
+                                      <th><a class = "btn btn-primary btn-sm"href="{% url 'hab_app:editOccupantDetails' %}?param={{ i.occupantId }}" onclick="showDetail(this)" id = "{{ i.occupantId }}">Edit Details</a></th>
+                                      {% endif %}
+                                  </tr>
+                              {% endif %}
+
+                      {% endfor %}
+
+                  </tbody>
+
+              </table>
+</div>
+</div>
+            <!-- /.box-body -->
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+    <script>
+    function myFunction() {
+      // Get the checkbox
+      var checkBox = document.getElementById("myCheck");
+      // Get the output text
+      var text = document.getElementById("yes");
+
+      // If the checkbox is checked, display the output text
+      if (checkBox.checked == true){
+        text.style.display = "none";
+      } else {
+        text.style.display = "table-row";
+      }
+    }
+    </script>
+
+
+{% endblock %}

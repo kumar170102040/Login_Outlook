@@ -1,0 +1,59 @@
+{% extends "hab_app/chrViewUpdated.html" %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp Damaged Item Details of {{ subcategory }}</b></span>
+{% endblock %}
+
+{% block body_block %}
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="box-header">
+                                <div style="text-align: center"><h4><u><b>{{ subcategory }} ({{ category }})</b></u></h4></div>
+                            </div>
+                        <hr>
+                        </div>
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Item Name</th>
+                                        <th>Purchase Order Number</th>
+                                        <th>Damaged Quantity Reported</th>
+                                        <th>Total Damaged Quantity</th>
+                                        <th>Damage Report Date</th>
+                                        <th>Comments</th>
+                                        <th>Inventory Item Details</th>
+                                        <th>Delete Damage Record</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for i in item_list %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ i.item_name }}</td>
+                                        <td>{{ i.purchase_order_no }}</td>
+                                        <td>{{ i.damaged_item_quantity }}</td>
+                                        <td>{{ i.total_damage_quantity }}</td>
+                                        <td>{{ i.date }}</td>
+                                        <td>{{ i.comments_on_damage }}</td>
+                                        <td><a href="{% url 'hab_app:inventory_fullDetails'%}?param={{ i.purchase_order_no }}">Details</a></td>
+                                        <td><a href="{% url 'hab_app:damaged_inventory_details' category subcategory%}?param={{ i.pk }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')">Delete</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock %}

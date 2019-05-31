@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>HAB - Student Portal</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  {# datetime#}
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/redmond/jquery-ui.css" rel="Stylesheet" />
+<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+
+  <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{% static 'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/redmond/jquery-ui.css" rel="Stylesheet" />
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
+  {# datetime#}
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body>
+  <!-- <header class="main-header"> -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'home' %}">HAB Student Portal</a>
+      </div>
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <ul class="nav navbar-right navbar-top-links">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            {% block username_block %}
+            {% endblock %}
+          </a>
+          <ul class="dropdown-menu dropdown-user">
+            <li><a href="{% url 'home' %}"><i class="fa fa-user fa-fw"></i>My Profile</a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.navbar-top-links -->
+      </nav>
+  <!-- </header> -->
+  <!-- Site wrapper -->
+  <div class="wrapper">
+  <aside class="main-sidebar">
+      <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+          <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+              <div class="input-group custom-search-form" style="text-align:center;">
+                 <a href="{% url 'home' %}"><img width="45%" src="media/iitg.png"></a>
+              </div>
+                <!-- /input-group -->
+            </li>
+            <li>
+                <a href="{% url 'home' %}"><i class="fa fa-home fa-fw"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="{% url 'home' %}"><i class="fa fa-history fa-fw"></i> Mess Feedback</a>
+            </li>
+            <!-- <li>
+              <a href="#"><i class="fa fa-bed fa-fw"></i> Guesthouse Booking<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <a href="system_book_guesthouse.php"> New Booking</a>
+                </li>
+                <li>
+                  <a href="system_track_guesthouse_application.php"> Booking History</a>
+                </li>
+                <li>
+                  <a href="system_guesthouse_rules.php"> Booking Rules</a>
+                </li>
+              </ul>
+                  /.nav-second-level
+            </li> -->
+            <!--
+            <li>
+                <a href="system_anonymous_complaint.php"><i class="fa fa-question-circle fa-fw"></i> Anonymous Complaints</a>
+            </li>
+            <li>
+                <a href="system_room_details.php"><i class="fa fa-list-alt fa-fw"></i> Vacation Stay Approval</a>
+            </li>
+            -->
+            <!-- <li>
+              <a href="#"><i class="fa fa-bus fa-fw"></i> Station Leave Request<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <a href="system_departure_arrival_info.php"> New Request</a>
+                </li>
+                <li>
+                  <a href="system_track_departure_arrival_info.php"> Previous Request(s)</a>
+                </li>
+              </ul>
+              /.nav-second-level
+            </li>
+            <li>
+              <a href="system_query_grievance.php"><i class="fa fa-comments fa-fw"></i> Query and Grievance</a>
+            </li>
+            <li>
+                <a href="system_all_forms.php"><i class="fa fa-edit fa-fw"></i> Centralized Forms</a>
+            </li>
+            <li>
+                <a href="system_student_details.php"><i class="fa fa-users fa-fw"></i> Search Student's Details</a>
+            </li> -->
+          </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+      </div>
+      <!-- /.navbar-static-side -->
+    </aside>
+
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          {%block title_inpage%}{%endblock%}
+        </h1>
+    </section>
+    <section class="content">
+          {%block content%}{%endblock%}
+    </section>
+
+    <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 0.0.1a
+    </div>
+    <strong>SWC</strong>
+    </footer>
+</div>
+</div>
+</body>

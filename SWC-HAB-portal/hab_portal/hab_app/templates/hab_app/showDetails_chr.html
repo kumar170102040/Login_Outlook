@@ -1,0 +1,139 @@
+{% extends 'hab_app/chrViewUpdated.html' %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp {{ details.name }}'s Full Details</b></span>
+{% endblock %}
+
+{% block body_block %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <!-- /.box -->
+
+
+
+            <!-- /.box-header -->
+
+
+            <div class="col-md-6">
+              <div class="box box-solid box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Occupant Details</h3>
+                </div>
+            <table class="table table-striped" >
+              <thead>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Name:</th><td>{{details.name}}</td>
+                </tr>
+                <tr>
+                  <th>Id type:</th><td>{{details.idType}}</td>
+                </tr>
+                <tr>
+                  <th>Id No:</th><td>{{details.idNo}}</td>
+                </tr>
+                <tr>
+                  <th>Gender:</th><td>{{details.gender}}</td>
+                </tr>
+                <tr>
+                  <th>SA/DA:</th><td>{{details.saORda}}</td>
+                </tr>
+                <tr>
+                  <th>Webmail:</th><td>{{details.webmail}}</td>
+                </tr>
+                <tr>
+                  <th>Alternate Email:</th><td>{{details.altEmail}}</td>
+                </tr>
+                <tr>
+                  <th>Mobile No:</th><td>{{details.mobNo}}</td>
+                </tr>
+                <tr>
+                  <th>Emergency No:</th><td>{{details.emgercencyNo}}</td>
+                </tr>
+                <tr>
+                  <th>Address</th><td>{{details.Address}}</td>
+                </tr>
+                <tr>
+                  <th>Bank Account No:</th><td>{{details.bankAccount}}</td>
+                </tr>
+                <tr>
+                  <th>IFSC code:</th><td>{{details.IFSCCode}}</td>
+                </tr>
+                <tr>
+                  <th>Account Holder Name:</th><td>{{details.accHolderName}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+          <div class="col-md-6">
+            <div class="box box-solid box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">Occupant Room Details</h3>
+              </div>
+                <table class = "table table-striped" >
+                  <thead>
+
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Hostel Name:</th><td>{{roDetails.hostelName}}</td>
+                    </tr>
+                    <tr>
+                      <th>Room No:</th><td>{{roDetails.roomNo}}</td>
+                    </tr>
+                    <tr>
+                      <th>Mess Status:</th><td>{{roDetails.messStatus}}</td>
+                    </tr>
+                    <tr>
+                      <th>To Mess Date:</th><td>{{roDetails.toMess}}</td>
+                    </tr>
+                    <tr>
+                      <th>From Mess Date:</th><td>{{roDetails.fromMess}}</td>
+                    </tr>
+                    <tr>
+                      <th>To Room Stay:</th><td>{{roDetails.toRoomStay}}</td>
+                    </tr>
+                    <tr>
+                      <th>From Room Stay:</th><td>{{roDetails.fromRoomStay}}</td>
+                    </tr>
+                    <tr>
+                      <th>Comments:</th><td>{{roDetails.comments}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+          </div>
+            </div>
+
+
+
+          <div class="col-lg-9 col-md-9">
+            <button onclick="window.history.back()" class="btn btn-primary">Back</button>
+          </div>
+
+
+            <!-- /.box-body -->
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+  <!-- /.content-wrapper -->
+{% endblock %}

@@ -1,0 +1,163 @@
+{%extends 'student_portal/base.html'%}
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbspMess Feedback</b></span>
+{% endblock %}
+{# load static #}
+{%block body_block%}
+
+{% if not feedback_ON_OFF %}
+
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  .alert {
+      padding: 5px;
+      background-color: #f06969;
+      color: white;
+  }
+
+  .closebtn {
+      margin-left: 10px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+  }
+
+  .closebtn:hover {
+      color: black;
+  }
+
+
+
+
+  </style>
+  </head>
+  <body>
+<h4>
+  <div class="alert">
+
+
+
+
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong>Page not active! </strong><br> <br> This page is active only on certain dates of the month .
+  </div>
+</h4>
+
+
+
+
+{% else %}
+<style>
+.alert {
+    padding: 20px;
+    background-color:  #07cada ;
+    color: black;
+}
+
+.algn_center {
+  text-align: center;
+  width: 33.33%;
+}
+.table_struct {
+  width: 100%;
+  border: 1;
+  cellpadding: 10;
+}
+</style>
+
+<div class="alert">
+  <h3>
+   Please fill this feedback only after getting your details corrected! </h3>
+<p>
+  If your Base  Hostel Name , Room No and Subscribed hostel details are incorrect,
+  please send a mail to <b>caretaker@iitg.ernet.in </b> , keeping <b> gensec_hostel@iitg.ernet.in, chr_hab@iitg.ernet.in, swc@iitg.ernet.in ,</b> in CC </br>.
+ Do not forget to mention <b>  you roll no : , Name: ,  Webmail Id : , Mobile No : , current Hostel : Current hostel Room No <b>, ( In case of previous hostel , also mention previous hostel name and room no)
+ </p>
+</div>
+
+
+
+<div style="text-align:center">
+    <h4>{% if messages %}
+        <div class="alert alert-success fade in">
+           <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>SUCCESS! </strong>
+                {% for message in messages %}
+                   {{ message }}
+                {% endfor %}
+        </div>
+    {% endif %}</h4>
+</div>
+
+<h3>
+<div style="text-align:center">
+    <script>
+
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+        document.write("Mess Feedback Form for " + monthNames[{{mth}}-1] + " " + {{yr}});
+
+    </script>
+</div>
+</h3>
+
+<hr>
+<!-- <div class="panel panel-default"> -->
+  <!-- <div class="panel-body"> -->
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% include 'student_portal/messfeedback_fields.html' %}
+
+      <div class="form-group" style=text-align:center>
+        <div class="col-sm-offset-2 col-sm-10">
+          {% if request.path == "/hab_portal/student_portal/messfeedback/update" %}
+               <button type="submit" class="btn btn-primary">Update </button>
+          {% else %}
+               <button type="submit" class="btn btn-success"> Submit </button>
+          {% endif %}
+          <br>
+          <hr>
+          <div style="text-align:center">
+            ***************************
+          </div>
+          <hr>
+        </div>
+      </div>
+    </form>
+  <!-- </div> -->
+<!-- </div> -->
+
+
+
+<!-- <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+  <p><a href="{% url 'home' %}">Return to home</a></p> -->
+
+
+{% endif %}
+<br>
+<div align="center">
+    <img src="/static/mess_documents/mess_images/mess_model_form.png" width="50%" height="50%">
+    <table cellpadding="10px">
+      <tr bgcolor="#39CCCC" width="50%" height="40px">
+        <hr>
+        <td><a href="/static/mess_documents/Mess_tender.pdf" download> <button type="button" class="btn btn-block btn-info"><h3> Download Mess Tender pdf </h3> </button></a></td>
+      </tr>
+    </table>
+</div>
+
+
+<br> <hr>
+{%endblock%}

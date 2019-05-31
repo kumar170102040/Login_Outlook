@@ -1,0 +1,140 @@
+{%extends 'student_portal/base.html'%}
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbspMess Preference (Final)</b></span>
+{% endblock %}
+{# load static #}
+{%block body_block%}
+{% if debarred_msg %}
+    <style>
+    .alert {
+        padding: 20px;
+        background-color:  #f06969;
+        color: white;
+    }
+    </style>
+    <h2>
+<div style="text-align:center" class="alert">
+
+    <script>
+      n =  new Date();
+      y = n.getFullYear();
+      m = (n.getMonth()+1)%12;
+      if( n.getMonth() == 11 )
+      {
+        y = y + 1;
+      }
+
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      document.write("Unable to allot any mess of your preference for" + monthNames[{{month}}-1] + " " + {{year}} + "<br>Contact HAB");
+    </script>
+</div>
+</h2>
+{% else %}
+ <style>
+    .alert {
+        padding: 20px;
+        background-color:  #00a65a ;
+        color: white;
+    }
+</style>
+<div class="alert" style="text-align:center">
+  <h4>
+   SUCCESS! You have been subscribed to {{ final_mess }} mess for {{ month }},{{ year }}
+  </h4>
+</div>
+
+<br>
+<div id="printableArea">
+<h2>
+<div style="text-align:center">
+
+    <script>
+      n =  new Date();
+      y = n.getFullYear();
+      m = (n.getMonth()+1)%12;
+      if( n.getMonth() == 11 )
+      {
+        y = y + 1;
+      }
+
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      document.write("Mess Subscription Details for " + monthNames[{{month}}-1] + " " + {{year}});
+    </script>
+</div>
+</h2>
+
+<div class="panel panel-default">
+  <div class="panel-body" style="text-align:center" >
+
+     <div style=text-align:center>
+
+        <br>
+        <div class="form-group">
+          <label class="control-label col-sm-2"> Name</label>
+          <div class="col-sm-10"> {{obj1.student_name}} </div>
+        </div>
+        <br>
+        <hr>
+        <div class="form-group">
+          <label class="control-label col-sm-2"> Roll Number</label>
+          <div class="col-sm-10"> {{obj1.student_id}} </div>
+        </div>
+        <br>
+        <hr>
+        <div class="form-group">
+          <label class="control-label col-sm-2"> Base Hostel</label>
+          <div class="col-sm-10"> {{obj1.hostelName}} </div>
+        </div>
+        <br>
+        <hr>
+        <div class="form-group">
+          <label class="control-label col-sm-2"> Room Number</label>
+          <div class="col-sm-10"> {{obj1.roomNo}} </div>
+        </div>
+        <br>
+        <hr>
+        <div class="form-group">
+          <label class="control-label col-sm-2"> Month</label>
+          <div class="col-sm-10"> {{month}} </div>
+        </div>
+        <br>
+        <hr>
+         <div class="form-group">
+          <label class="control-label col-sm-2"> Year</label>
+          <div class="col-sm-10"> {{year}} </div>
+        </div>
+        <br>
+        <hr>
+        <div class="form-group">
+          <label class="control-label col-sm-2"> Alloted Mess</label>
+          <div class="col-sm-10"> {{obj1.final_hostel}} </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <br>
+    </div>
+  </div>
+</div>
+</div>
+    <div style="text-align:center"><input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-success" /></div>
+<script>
+         function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+
+}</script>
+{% endif %}
+{%endblock%}

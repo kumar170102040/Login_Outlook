@@ -1,0 +1,35 @@
+{% extends 'student_portal/base.html' %}
+{% block body_block %}
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbspTrack Requests</b></span>
+{% endblock %}
+<thead>
+    <tr>
+        <th>Date Created</th>
+        <th>Date Updated</th>
+        <th>ApplicantId</th>
+        <th>Status</th>
+        <th>Comments</th>
+    </tr>
+</thead>
+
+<tbody>
+  {% for i in req %}
+  <tr>
+        <td>{{ i.created }}</td>
+        <td>{{ i.updated }}</td>
+        <td>{{ i.idNo }}</td>
+        {%if i.ct_approval == "Pending"%}
+        <td><span class="label label-warning">{{ i.ct_approval }}</span></td>
+        {% elif i.ct_approval == "Disapproved"%}
+        <td><span class="label label-danger">{{ i.ct_approval }}</span></td>
+        {% else %}
+        <td><span class="label label-success">{{ i.ct_approval }}</span></td>
+        {% endif %}
+        <td>{{ i.comments }}</td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+
+{% endblock %}

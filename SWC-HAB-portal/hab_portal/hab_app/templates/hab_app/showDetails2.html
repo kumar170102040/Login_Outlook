@@ -1,0 +1,132 @@
+{% extends 'hab_app/caretakerViewUpdated.html' %}
+{% block body_block %}
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <!-- /.box -->
+
+
+
+            <!-- /.box-header -->
+
+
+            <div class="col-md-6">
+              <div class="box box-solid box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Occupant Details</h3>
+                </div>
+            <table class="table table-striped" >
+              <thead>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Name:</strong></td><td>{{details.name}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Id type:</strong></td><td>{{details.idType}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Id No:</strong></td><td>{{details.idNo}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Gender:</strong></td><td>{{details.gender}}</td>
+                </tr>
+                <tr>
+                  <td><strong>SA/DA:</strong></td><td>{{details.saORda}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Webmail:</strong></td><td>{{details.webmail}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Alternate Email:</strong></td><td>{{details.altEmail}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Mobile No:</strong></td><td>{{details.mobNo}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Emergency No:</strong></td><td>{{details.emgercencyNo}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Bank Account No:</strong></td><td>{{details.bankAccount}}</td>
+                </tr>
+                <tr>
+                  <td><strong>IFSC code:</strong></td><td>{{details.IFSCCode}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Account Holder Name:</strong></td><td>{{details.accHolderName}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+          <div class="col-md-6">
+            <div class="box box-solid box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">Occupant Room Details</h3>
+              </div>
+                <table class = "table table-striped" >
+                  <thead>
+
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Hostel Name:</strong></td><td>{{roDetails.hostelName}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Room No:</strong></td><td>{{roDetails.roomNo}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mess Status:</strong></td><td>{{roDetails.messStatus}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>To Mess Date:</strong></td><td>{{roDetails.toMess}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>From Mess Date:</strong></td><td>{{roDetails.fromMess}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>To Room Stay:</strong></td><td>{{roDetails.toRoomStay}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>From Room Stay:</strong></td><td>{{roDetails.fromRoomStay}}</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Comments:</strong></td><td>{{roDetails.comments}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+          </div>
+            </div>
+
+
+
+          <div class="col-lg-9 col-md-9">
+            <a class="btn btn-primary" href="{% url 'hab_app:vacate' %}" role="button">Back</a>
+          </div>
+
+
+            <!-- /.box-body -->
+
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}

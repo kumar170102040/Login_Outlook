@@ -1,0 +1,196 @@
+{% extends "hab_app/chrViewUpdated.html" %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp Search Student</b></span>
+{% endblock %}
+
+
+{% block body_block %}
+{% load my_tags %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        .h-scroll {
+    height: 90vh; /* %-height of the viewport */
+    position: inherit;
+    overflow-y: scroll;
+}
+    </style>
+
+<!-- Main content -->
+<section class="content">
+<div class="box">
+    <div class="row">
+        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="col-md-12" style="text-align: center">
+                <label class="control-label" style="text-align: center" for="name"> Name</label>
+                <input type="text" name="name" id="name" placeholder="Student's Name" value="" required>
+                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp (OR) &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <label class="control-label" style="text-align: center" for="idNo"> Id Number</label>
+                <input type="text" name="idNo" id="idNo" placeholder="Student's IdNo" value="" required>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp (OR) &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <label class="control-label " style="text-align: center" for="webmail"> Webmail</label>
+                <input type="text" name="webmail" id="webmail" placeholder="Student's webmail" value="" required>@iitg.ernet.in
+                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <button type="submit" class="btn btn-primary" name="btn1"> Search </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    {% for stud in student %}
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 h-scroll">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-blue">
+              <div class="widget-user-image">
+                    {% ifnotequal stud.photo "" %}
+                  <img class="img-fluid" src="{{ stud.photo.url }}" alt="No Photo">
+                    {% else %}
+                        <img class="img-fluid" src="" alt="No Photo">
+                  {% endifnotequal %}
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class="widget-user-username">{{ stud.name }}</h3>
+              <h5 class="widget-user-desc"> {{ stud.idNo }}, {{ stud.webmail }}@iitg.ernet.in</h5>
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 ">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stud.idNo }}</h5>
+                    <span class="description-text">Roll No.</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 ">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stud.webmail }}@iitg.ernet.in</h5>
+                    <span class="description-text">Webmail</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stud.altEmail }}</h5>
+                    <span class="description-text">Alternate E-mail</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+                <div class="row">
+                <div class="col-sm-4 ">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stud.mobNo }}</h5>
+                    <span class="description-text">Mobile Number</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 ">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stud.gender }}</h5>
+                    <span class="description-text">Gender</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header">{{ stud.Address }}</h5>
+                    <span class="description-text">Address</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+                <div class="row">
+{#                <div class="col-sm-4 ">#}
+{#                  <div class="description-block">#}
+{#                    <h5 class="description-header">{{ stud.gender }}</h5>#}
+{#                    <span class="description-text">Gender</span>#}
+{#                  </div>#}
+{#                  <!-- /.description-block -->#}
+{#                </div>#}
+{#                <!-- /.col -->#}
+{#                <div class="col-sm-4 ">#}
+{#                  <div class="description-block">#}
+{#                    <h5 class="description-header">{{ stud.altEmail }}</h5>#}
+{#                    <span class="description-text">Alt E-mail</span>#}
+{#                  </div>#}
+{#                  <!-- /.description-block -->#}
+{#                </div>#}
+{#                <!-- /.col -->#}
+{#                <div class="col-sm-4">#}
+{#                  <div class="description-block">#}
+{#                    <h5 class="description-header">{{ stud.Address }}</h5>#}
+{#                    <span class="description-text">Address</span>#}
+{#                  </div>#}
+{#                  <!-- /.description-block -->#}
+{#                </div>#}
+                <div class="col-sm-12">
+                  <div class="description-block">
+                    <a href="{% url 'hab_app:search_student' %}?param1={{ stud.idNo }}" id = "{{ stud.idNo }}" class="btn btn-primary">Full Details</a>
+{#                    <a href="{% url 'hab_app:search_student'%}?param={{ stud.idNo }}" class="btn btn-warning">Edit Details</a>#}
+
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+            </div>
+          </div>
+
+          <!-- /.widget-user -->
+        </div>
+        <!-- /.col -->
+
+      </div>
+
+    {% endfor %}
+</section>
+</div>
+    <style>
+    #mess {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #mess td, #mess th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #mess tr:nth-child(even){background-color: #f2f2f2;}
+
+    #mess tr:hover {background-color: #ddd;}
+
+    #mess th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+    }
+    </style>
+    <script>
+        jQuery(function ($) {
+        var $inputs = $('input[name=name],input[name=idNo],input[name=webmail]');
+        $inputs.on('input', function () {
+            // Set the required property of the other input to false if this input is not empty.
+            $inputs.not(this).prop('required', !$(this).val().length);
+        });
+});
+    </script>
+
+{% endblock %}

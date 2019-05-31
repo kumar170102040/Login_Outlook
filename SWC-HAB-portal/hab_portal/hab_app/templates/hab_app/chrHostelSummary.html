@@ -1,0 +1,42 @@
+{% extends "hab_app/chrView.html" %}
+{% block body_block %}
+
+  <thead>
+      <tr>
+          <th rowspan="2">Hostel Name</th>
+          <th rowspan="2">Total Rooms</th>
+          <th rowspan="2">Occupied Rooms</th>
+          <th colspan="5" style="text-align:center;">Ready To Be Alloted</th>
+          <th rowspan="2">Abandoned Rooms</th>
+      </tr>
+      <tr>
+        <th>Ground Floor</th>
+        <th>First Floor</th>
+        <th>Second Floor</th>
+        <th>Third Floor</th>
+        <th>Total</th>
+      </tr>
+  </thead>
+
+  <tbody>
+    {% for i,j in zipped_summary %}
+    <tr>
+          <td>{{ j.hostelName }}</td>
+          {% for z in i%}
+          <td>{{ z }}</td>
+          {% endfor %}
+      </tr>
+      {% endfor %}
+      <tfoot>
+        <tr class="bg-info">
+          <td><strong>Total</strong></td>
+          {% for i in total %}
+            <td><strong>{{ i }}</strong></td>
+          {% endfor %}
+        </tr>
+      </tfoot>
+      
+  </tbody>
+
+
+{% endblock %}

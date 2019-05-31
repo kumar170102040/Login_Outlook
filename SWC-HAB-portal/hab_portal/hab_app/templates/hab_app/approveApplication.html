@@ -1,0 +1,27 @@
+{% extends 'hab_app/headView.html' %}
+{% block body_block %}
+
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>ApplicantId</th>
+        <th>Details</th>
+        <th>Approve/Disapprove</th>
+
+    </tr>
+</thead>
+
+<tbody>
+  {% for i in applicants %}
+  <tr>
+        <td>{{ i.guestname }}</td>
+        <td>{{ i.id_no }}</td>
+        <td>#</td>
+        <td><a class="btn btn-primary" href="{% url 'hab_app:approveApplication' %}?param={{i.id_no}}" role="button">Approve</a> /
+        <a class="btn btn-primary" href="{% url 'hab_app:disapproveApplication' %}?param={{i.id_no}}" role="button">Disapprove</a></td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+
+{% endblock %}

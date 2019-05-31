@@ -1,0 +1,50 @@
+{% extends "hab_app/caretakerView.html" %}
+{% block body_block %}
+
+  <thead>
+      <tr>
+          <th>Date</th>
+          <th>Room No.</th>
+          <th>Occupant Name</th>
+          <th>Occupant ID No</th>
+          <th>Id Type</th>
+          <th>Contact</th>
+          <th>Preexist</th>
+            {% if permission %}
+          <th>Alloted</th>
+          {% endif %}
+      </tr>
+  </thead>
+
+  <tbody>
+    {% for i in tobeAlloted %}
+    <tr>
+          <td>{{ i.toStay }}</td>
+          <td>{{ i.roomNo }}</td>
+          <td>{{i.occupantName}}</td>
+          <td>{{ i.occupantId }}</td>
+          <td>{{ i.idType }}</td>
+          <td></td>
+          <td>No</td>
+            {% if permission %}
+          <td><a class="btn btn-primary btn-sm" href="{% url 'hab_app:addDetails' %}?param={{ i.occupantId }}" role="button">Allot</a></td>
+          {% endif %}
+      </tr>
+      {% endfor %}
+    {% for i in tobeAlloted2 %}
+    <tr>
+          <td>{{ i.To_Date }}</td>
+          <td>{{ i.roomNo }}</td>
+          <td>{{i.guestname}}</td>
+          <td>{{ i.id_no }}</td>
+          <td>{{ i.id_type }}</td>
+          <td></td>
+          <td>No</td>
+            {% if permission %}
+          <td><a class="btn btn-primary btn-sm" href="{% url 'hab_app:addDetails2' %}?param={{ i.id_no }}" role="button">Allot</a></td>
+          {% endif %}
+      </tr>
+      {% endfor %}
+  </tbody>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{%extends 'student_portal/base.html'%}
+
+{% load staticfiles %}
+{%block body_block%}
+
+<div style="margin-left:20%;">
+
+{% if messages %}
+<ul class="messages">
+{% for message in messages %}
+
+  <button style="margin-left:20%;" align="center" class="btn btn-success" class="{{ message.tags }}">{{ message }} </button>
+{% endfor %}
+</ul>
+{% endif %}
+
+</div>
+
+
+<form enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+    <table class="table table-striped">
+      <tbody>
+        {{ form.as_table }}
+      </tbody>
+  </table>
+  <button type="submit" onclick="validateImage()" class="save btn btn-primary">Save</button>
+    </form>
+
+    <script type="text/javascript">
+    function validateImage(){
+
+          var size1 = document.getElementById('id_photo').files[0].size;
+          var size2 = document.getElementById('id_idPhoto').files[0].size;
+          alert(size1);
+          alert(size2);
+          size1 = size1/1024 ;
+          size2 = size2/1024 ;
+          if (size1>400 || size2>400){
+            alert("max upload size is 400 kb");
+          }
+          return false;
+    }
+
+    </script>
+
+{%endblock%}
+
+<script type="text/javascript">
+$(function () {
+  $("#id_idNo :input").attr("disabled", true);
+  $("#id_idType :input").attr("disabled", true);
+  $('input,textarea,select').filter('[required]:visible').parent().parent().find("label").addClass("required");
+});
+
+
+</script>

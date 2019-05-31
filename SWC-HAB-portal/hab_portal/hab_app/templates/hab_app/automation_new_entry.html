@@ -1,0 +1,29 @@
+{% extends "hab_app/chrView.html" %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp Add/Edit</b></span>
+{% endblock %}
+
+
+{% block body_block %}
+
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  <table class="table table-striped">
+    <tbody>
+      {{ form.as_table }}
+    </tbody>
+  </table>
+    <div style="text-align: center">
+        <button type="submit" class="btn btn-success" method="post" name="btn2">Save</button>
+    </div>
+</form>
+            <button onclick="window.history.back()" class="btn btn-primary">Back</button>
+
+
+
+
+
+
+
+{% endblock %}

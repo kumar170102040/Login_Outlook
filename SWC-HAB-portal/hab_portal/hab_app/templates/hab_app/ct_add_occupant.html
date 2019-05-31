@@ -1,0 +1,215 @@
+{% extends 'hab_app/caretakerView.html' %}
+{% block body_block %}
+
+
+
+<form enctype="multipart/form-data" method="post" onsubmit="return validateImage();">
+    {% csrf_token %}
+
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>
+            <div class="fieldWrapper">
+      {{ form2.name.errors }}
+      {{ form2.name.label_tag }}
+      {{ form2.name }}
+  </div>
+</td>
+</tr>
+<tr>
+  <td>
+  <div class="fieldWrapper">
+    {{ form2.idType.errors }}
+    {{ form2.idType.label_tag }}
+    {{ form2.idType }}
+  </div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form1.occupantId.errors }}
+  {{ form1.occupantId.label_tag }}
+  {{ form1.occupantId }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+<div class="fieldWrapper">
+  {{ form2.gender.errors }}
+  {{ form2.gender.label_tag }}
+  {{ form2.gender }}
+</div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form2.saORda.errors }}
+  {{ form2.saORda.label_tag }}
+  {{ form2.saORda }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+
+<div class="fieldWrapper">
+  {{ form2.webmail.errors }}
+  {{ form2.webmail.label_tag }}
+  {{ form2.webmail }}
+</div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form2.altEmail.errors }}
+  {{ form2.altEmail.label_tag }}
+  {{ form2.altEmail }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+
+<div class="fieldWrapper">
+  {{ form2.mobNo.errors }}
+  {{ form2.mobNo.label_tag }}
+  {{ form2.mobNo }}
+</div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form2.emgercencyNo.errors }}
+  {{ form2.emgercencyNo.label_tag }}
+  {{ form2.emgercencyNo }}
+</div></td>
+</tr>
+<tr>
+  <td>
+<div class="fieldWrapper">
+  {{ form2.photo.errors }}
+  {{ form2.photo.label_tag }}
+  {{ form2.photo }}
+</div>
+</td>
+<td>
+
+<div class="fieldWrapper">
+  {{ form2.idPhoto.errors }}
+  {{ form2.idPhoto.label_tag }}
+  {{ form2.idPhoto }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+<div class="fieldWrapper">
+  {{ form2.Address.errors }}
+  {{ form2.Address.label_tag }}
+  {{ form2.Address }}
+</div>
+</td>
+<td>
+
+<div class="fieldWrapper">
+  {{ form2.Pincode.errors }}
+  {{ form2.Pincode.label_tag }}
+  {{ form2.Pincode }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+
+<div class="fieldWrapper">
+  {{ form1.hostelName.errors }}
+  {{ form1.hostelName.label_tag }}
+  {{ form1.hostelName }}
+</div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form1.roomNo.errors }}
+  {{ form1.roomNo.label_tag }}
+  {{ form1.roomNo }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+<div class="fieldWrapper">
+  {{ form1.messStatus.errors }}
+  {{ form1.messStatus.label_tag }}
+  {{ form1.messStatus }}
+</div>
+</td>
+<tr>
+  <tr>
+    <td>
+
+<div class="fieldWrapper">
+  {{ form1.fromRoomStay.errors }}
+  {{ form1.fromRoomStay.label_tag }}
+  {{ form1.fromRoomStay }}
+</div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form1.toRoomStay.errors }}
+  {{ form1.toRoomStay.label_tag }}
+  {{ form1.toRoomStay }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+
+
+<div class="fieldWrapper">
+  {{ form2.bankName.errors }}
+  {{ form2.bankName.label_tag }}
+  {{ form2.bankName }}
+</div>
+</td>
+<td>
+
+<div class="fieldWrapper">
+  {{ form2.bankAccount.errors }}
+  {{ form2.bankAccount.label_tag }}
+  {{ form2.bankAccount }}
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+
+<div class="fieldWrapper">
+  {{ form2.IFSCCode.errors }}
+  {{ form2.IFSCCode.label_tag }}
+  {{ form2.IFSCCode }}
+</div>
+</td>
+<td>
+<div class="fieldWrapper">
+  {{ form2.accHolderName.errors }}
+  {{ form2.accHolderName.label_tag }}
+  {{ form2.accHolderName }}
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="fieldWrapper">
+  {{ form1.comment.errors }}
+  {{ form1.comment.label_tag }}
+  {{ form1.comment }}
+</div>
+</td>
+<tr>
+</tbody>
+</table>
+
+<input type="submit" name="" value="Allot" class="btn btn-primary">
+</form>
+
+
+
+{% endblock %}

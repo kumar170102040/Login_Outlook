@@ -1,0 +1,108 @@
+{% extends 'hab_app/chrViewUpdated.html' %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbspInventory Item Complete Details</b></span>
+{% endblock %}
+
+{% block body_block %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+            <div id="printableArea">
+            <div class="col-md-8 col-lg-offset-2">
+              <div class="box box-solid box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title"> Inventory Item Details</h3>
+                </div>
+            <table class="table table-striped" >
+              <thead>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Item Name:</th><td>{{item.item_name}}</td>
+                </tr>
+                <tr>
+                  <th>Purchase Order Number :</th><td>{{item.purchase_order_no}}</td>
+                </tr>
+                <tr>
+                  <th>Purchase Date:</th><td>{{item.purchase_date}}</td>
+                </tr>
+                <tr>
+                  <th>Item Description:</th><td>{{item.description}}</td>
+                </tr>
+                <tr>
+                  <th>Bill Number:</th><td>{{item.bill_no}}</td>
+                </tr>
+                <tr>
+                  <th>Receipt Date:</th><td>{{item.receipt_date}}</td>
+                </tr>
+                <tr>
+                  <th>Quantity:</th><td>{{item.quantity}}</td>
+                </tr>
+                <tr>
+                  <th>Total Amount:</th><td>{{item.total_cost}}</td>
+                </tr>
+                <tr>
+                  <th>Supplier name:</th><td>{{item.supplier_name}}</td>
+                </tr>
+                <tr>
+                  <th>Supplier Email:</th><td>{{item.supplier_email}}</td>
+                </tr>
+                <tr>
+                  <th>Supplier Address:</th><td>{{item.supplier_address|linebreaks}}</td>
+                </tr>
+                <tr>
+                  <th>Supplier Phone No 1:</th><td>{{item.supplier_phone_no1}}</td>
+                </tr>
+                <tr>
+                  <th>Supplier Phone No 2:</th><td>{{item.supplier_phone_no2}}</td>
+                </tr>
+                <tr>
+                  <th>Allotted To:</th><td>{{item.alloted_location_subcategory}}</td>
+                </tr>
+                <tr>
+                  <th>Allotted to Details:</th><td>{{item.alloted_to_details}}</td>
+                </tr>
+                <tr>
+                  <th>Remark:</th><td>{{item.remarks|linebreaks}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+
+      </div>
+     </div>
+        {% if permission %}
+        <div style="text-align:center">
+            <a class="btn btn-warning" href="{% url 'hab_app:inventory_fullDetails' %}?param3={{ item.purchase_order_no }}" role="button">Edit</a>
+            <a href="{% url 'hab_app:inventory_fullDetails' %}?param2={{ item.purchase_order_no }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+            <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-success" />
+            <button onclick="window.history.back()" class="btn btn-primary">Back</button>
+        </div>
+        {% endif %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<script>
+     function printDiv(divName) {
+ var printContents = document.getElementById(divName).innerHTML;
+ var originalContents = document.body.innerHTML;
+
+ document.body.innerHTML = printContents;
+
+ window.print();
+
+ document.body.innerHTML = originalContents;
+
+}</script>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "hab_app/caretakerView.html" %}
+{% block body_block %}
+
+<form enctype="multipart/form-data" method="post" onsubmit="return validateImage();">
+  {% csrf_token %}
+  <table class="table table-striped">
+    <tbody>
+      {{ occupantedit_form.as_table }}
+    </tbody>
+  </table>
+  <input type="submit" name="" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

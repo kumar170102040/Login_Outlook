@@ -1,0 +1,152 @@
+{%extends 'student_portal/base.html'%}
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbspMess Preference</b></span>
+{% endblock %}
+{# load static #}
+{%block body_block%}
+
+{% if not preference_ON_OFF %}
+
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  .alert {
+      padding: 5px;
+      background-color: #f06969;
+      color: white;
+  }
+
+  .closebtn {
+      margin-left: 10px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+  }
+
+  .closebtn:hover {
+      color: black;
+  }
+  </style>
+  </head>
+  <body>
+<h4>
+  <div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong>Page not active! </strong><br> <br> This page is active only on certain dates of the month .
+  </div>
+</h4>
+
+{% else %}
+<br>
+<h2>
+
+
+<div style="text-align:center">
+
+    <script>
+      n =  new Date();
+      y = n.getFullYear();
+      m = (n.getMonth()+1)%12;
+      if( n.getMonth() == 11 )
+      {
+        y = y + 1;
+      }
+
+      var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      document.write("Mess Preference Form for " + monthNames[{{mth}}-1] + " " + {{yr}});
+    </script>
+</div>
+</h2>
+<div class="panel panel-default">
+  <div class="panel-body" style="text-align:center" >
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% include 'student_portal/preference_fields.html' %}
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <br>
+          {% if request.path == "/hab_portal/student_portal/preference/update" %}
+               <button type="submit" class="btn btn-primary">Update </button>
+          {% else %}
+               <button type="submit" class="btn btn-success"> Submit </button>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}
+<script>
+
+  $(document).ready(function () {
+
+      $('select').change(function () {
+
+          if ($('select option[value="' + $(this).val() + '"]:selected').length > 1)
+          {
+              if ($("#id_h1 option:selected").val() != "NA"  && $("#id_h2 option:selected").val() != "NA")
+              {
+                alert('you have already selected this item');
+                $(this).val("NA");
+              }
+
+              // $("#mydropdownlist").val("").change();
+          }
+         ;
+
+          if ($("#id_h1 option:selected").val() == "NA")
+          {
+              // console.log(4);
+              $('select').val("NA").trigger('click');
+
+          }
+          // console.log(88);
+          if ($("#id_h3 option:selected").val() != "NA" && $("#id_h2 option:selected").val() == "NA")
+          {
+              // console.log(5);
+                // console.log(6);
+                $('#id_h2').val("NA").trigger('click');
+                $('#id_h3').val("NA").trigger('click');
+          }
+
+          if ($("#id_h1 option:selected").val() ==   '{{form.hostelName.value}}' )
+          {
+              // console.log(4);
+              alert('{{form.hostelName.value}}' + " is your base Hostel you can't choose it !");
+              $('select').val("NA").trigger('click');
+
+          }
+
+          if ($("#id_h2 option:selected").val() ==   '{{form.hostelName.value}}' )
+          {
+              // console.log(4);
+              alert('{{form.hostelName.value}}' + " is your base Hostel you can't choose it !");
+              $('#id_h2').val("NA").trigger('click');
+              $('#id_h3').val("NA").trigger('click');
+
+          }
+
+          if ($("#id_h3 option:selected").val() ==   '{{form.hostelName.value}}' )
+          {
+              // console.log(4);
+              alert('{{form.hostelName.value}}' + " is your base Hostel you can't choose it !");
+              $('#id_h3').val("NA").trigger('click');
+
+          }
+
+      
+
+
+          });
+
+  });
+</script>
+{%endblock%}

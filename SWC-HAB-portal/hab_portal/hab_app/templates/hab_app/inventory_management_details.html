@@ -1,0 +1,73 @@
+{% extends "hab_app/chrViewUpdated.html" %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbspInventory Details of {{ subcategory }}</b></span>
+{% endblock %}
+
+{% block body_block %}
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="box-header">
+                                <div style="text-align: center"><h4><u><b>{{subcategory }} ({{ category }})</b></u></h4></div>
+                            </div>
+                            {% ifnotequal subcategory 'All' %}
+                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary" method="post" name="btn1" > Add Entry</button>
+                            </form>
+                            {% endifnotequal %}
+                        <hr>
+                        </div>
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Item Name</th>
+                                        <th>Purchase Order Number</th>
+                                        {% ifequal subcategory "All" %}
+                                        <th>Alloted To</th>
+                                        {% endifequal %}
+                                        <th>Order Placed Date</th>
+                                        <th>Bill Number</th>
+                                        <th>Receipt Date</th>
+                                        <th>Quantity</th>
+                                        <th>Total Amount</th>
+                                        <th>Supplier Name</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for i in item_list %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ i.item_name }}</td>
+                                        <td>{{ i.purchase_order_no }}</td>
+                                        {% ifequal subcategory "All" %}
+                                        <td>{{ i.alloted_location_subcategory }}</td>
+                                        {% endifequal %}
+                                        <td>{{ i.purchase_date }}</td>
+                                        <td>{{ i.bill_no }}</td>
+                                        <td>{{ i.receipt_date }}</td>
+                                        <td>{{ i.quantity }}</td>
+                                        <td>{{ i.total_cost }}</td>
+                                        <td>{{ i.supplier_name }}</td>
+                                        <td><a href="{% url 'hab_app:inventory_fullDetails'%}?param={{ i.purchase_order_no }}">Details</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'hab_app/generalView.html' %}
+
+{% block content %}
+<form  enctype="multipart/form-data" class="form-horizontal" action="{% url 'hab_app:generalAllot' %}" method="post" onsubmit="return validateImage();">
+  {% csrf_token %}
+<table class="table table-striped">
+  <tbody>
+    {{ form.as_table }}
+  </tbody>
+</table>
+<input class="btn btn-primary" type="submit" value="Submit">
+</form>
+
+
+{% endblock %}

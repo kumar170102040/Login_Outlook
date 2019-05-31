@@ -1,0 +1,17 @@
+{% extends "hab_app/chrView.html" %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp Freshers Bulk Allotment</b></span>
+{% endblock %}
+
+{% block body_block %}
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="csv_file">
+    <button class="btn btn-primary" type="submit">Upload</button>
+  </form>
+
+
+{% endblock %}

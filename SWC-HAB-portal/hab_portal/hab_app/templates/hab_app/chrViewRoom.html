@@ -1,0 +1,43 @@
+{% extends "hab_app/chrView.html" %}
+{% block body_block %}
+
+  <thead>
+      <tr>
+          <th>Room No.</th>
+          <th>Room Type</th>
+          <th>Floor Info</th>
+          <th>Room Status</th>
+          <th>Occupant Name</th>
+          <th>Occupant ID No</th>
+          <th>Webmail Id</th>
+          <th>Contact</th>
+      </tr>
+  </thead>
+
+  <tbody>
+    {% for i,j in zipped %}
+    <tr>
+          <td>{{ i.roomNo }}</td>
+          <td>{{ i.roomOccupancyType }}</td>
+          <td>{{ i.floorInfo }}</td>
+          <td>{{ i.roomStatus }}</td>
+          <td>{{ j.name }}</td>
+          <td>{{ j.idNo}}</td>
+          <td>{{ j.webmail}}</td>
+          <td>{{j.mobNo}}</td>
+      </tr>
+      {% endfor %}
+    {% for i in empty_rooms %}
+    <tr>
+          <td>{{ i.roomNo }}</td>
+          <td>{{ i.roomOccupancyType }}</td>
+          <td>{{ i.floorInfo }}</td>
+          <td>{{ i.roomStatus }}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      {% endfor %}
+</tbody>
+{% endblock %}

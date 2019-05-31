@@ -1,0 +1,83 @@
+
+
+<!DOCTYPE html>
+{% load static%}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>HAB</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{% static 'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bower_components/bootstrap_1.min.css' %}">
+{# datetime#}
+  <link type="text/css" href="{% static 'js/jquery_ui_1.min.js' %}" rel="Stylesheet" />
+
+  <script type="text/javascript" src="{% static 'js/jquery_ui_2.min.js' %}"></script>
+{# datetime#}
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <script src="{% static 'js/jquery_3.min.js' %}"></script>
+  <script src="{% static 'js/jquery_4.min.js' %}"></script>
+
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="{% static 'css/google_fonts.css' %}">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+
+  <div class="login-logo" style="padding-top : 50%">
+    <a href="#"><b>HAB</b>PORTAL</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    {% if message == 1 %}
+    <p class="login-box-msg" style="color:red">Roll No incorrect</p>
+    {% endif %}
+    {% if message == 2 %}
+    <p class="login-box-msg" style="color:red">Details not found!!!contact caretaker</p>
+    {% endif %}
+    <form enctype="multipart/form-data" method="post">
+     {% csrf_token %}
+      <div class="form-group has-feedback">
+        <input type="text" name="OccupantId"  class="form-control" placeholder="OccupantId ( Roll No )">
+
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" name="HostelName"  class="form-control" placeholder="Hostel Name">
+
+      </div>
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <input type="submit" name="" value="Submit" class="btn btn-primary">
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+
+</body>
+</html>

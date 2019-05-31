@@ -1,0 +1,187 @@
+{% extends "hab_app/chrViewUpdated.html" %}
+
+{% block head_block %}
+<span style="line-height: 50px; color: white;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp Mess Debarred Students</b></span>
+{% endblock %}
+
+{% block body_block %}
+{% load my_tags %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+
+
+<!-- Main content -->
+<section class="content">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="box">
+                    <div class="box-header" style="text-align: center; background-color:  #4CAF50; color: white"><h4> ADD DEBARRED STUDENT DETAILS</h4></div>
+                    <div class="box-comment" style="text-align: center; color:red">{{ err_msg }}</div>
+                        <form class="form-horizontal" action="{% url 'hab_app:debarred_student' %}" method="post" enctype="multipart/form-data">
+                              {% csrf_token %}
+                                <div class="box-body">
+
+                                <div style="text-align: center">
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4" style="text-align: center" for="name"> Name</label>
+                                      <div class="col-sm-6 col-sm-offset-2"> <input type="text" name="name" id="name" placeholder="Debarred Student's Name" required> </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4" style="text-align: center" for="idType" > Id Type</label>
+                                      <div class="col-sm-6 col-sm-offset-2">  <select name="idType" id="idType" required>
+                                                                                  <option>Rollno</option>
+                                                                                  <option>ProjectId</option>
+                                                                                  <option>IITG_Employee Id</option>
+                                                                                  <option>GovtId_VoterCard</option>
+                                                                                  <option>GovtId_PANCard</option>
+                                                                                  <option>GovtID_AadharCard</option>
+                                                                                  <option>GovtID_PassportNo</option>
+                                                                                  <option>OtherCollegeId</option>
+                                                                                </select>  </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4" style="text-align: center" for="idNo"> Id Number</label>
+                                      <div class="col-sm-6 col-sm-offset-2"> <input type="text" name="idNo" id="idNo" placeholder="Debarred Student's IdNo" required> </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4" style="text-align: center" for="webmail"> Webmail</label>
+                                      <div class="col-sm-5 col-sm-offset-3"> <input type="text" name="webmail" id="webmail" placeholder="excluding @iit.ernet.in" required>@iitg.ernet.in </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4" style="text-align: center" for="debarred"> Debarred Hostel(s)</label>
+                                      <div class="col-sm-6 col-sm-offset-2"> <select name="debarred" id="debarred" required>
+                                                                                  <option>All Hostels</option>
+                                                                                  <option>Barak</option>
+                                                                                  <option>Bramhaputra</option>
+                                                                                  <option>Dhansiri</option>
+                                                                                  <option>Dibang</option>
+                                                                                  <option>Dihing</option>
+                                                                                  <option>Kameng</option>
+                                                                                  <option>Kapili</option>
+                                                                                  <option>Lohit</option>
+                                                                                  <option>Manas</option>
+                                                                                  <option>Siang</option>
+                                                                                  <option>Subansiri</option>
+                                                                                  <option>Umiam</option>
+                                                                                </select>  </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4" style="text-align: center" for="start_date"> Start Date</label>
+                                      <div class="col-sm-6 col-sm-offset-2"> <input type="date" name="start_date" id="start_date" required> </div>
+                                    </div>
+                                    <hr>
+                                     <div class="form-group">
+                                      <label class="control-label col-sm-4" style="text-align: center" for="end_date"> End Date</label>
+                                      <div class="col-sm-6 col-sm-offset-2"> <input type="date" name="end_date" id="end_date" required> </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                      <label class="control-label col-sm-4" style="text-align: center" for="reasons"> Reason</label>
+                                        <div class="col-sm-6 col-sm-offset-2"> <textarea name="reasons" id="reasons" cols="40" rows="4"> </textarea></div>
+                                    </div>
+                                    <hr>
+
+                                        <div style="text-align:center"><button type="submit" class="btn btn-primary" method="post" name="btn3" > Save</button></div>
+                                    <br>
+                                </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 h-scroll">
+                <div class="box">
+                    <div class="box-header" style="text-align: center; background-color:  #4CAF50; color: white"><h4>DEBARRED STUDENT LIST</h4></div>
+                    <div class="box-comment" style="text-align: center; color:green">{{ msg }}</div>
+                    <div class="box-body">
+                            <div class="panel panel-default">
+                          <div class="panel-body">
+                                {% for obj in debarred_list %}
+                                    <div class="row">
+                                        <div class="col-xs-2 col-md-3">
+                                            <div style="color:green;">{{ forloop.counter }}. Name: </div>{{ obj.name }}
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <div style="color:green;">Webmail: </div>{{ obj.webmail }}
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <div style="color:green;">Id No: </div>{{ obj.idNo }}
+                                        </div>
+                                        <div class="col-xs-3 col-md-3">
+                                            <div style="color:green;">Debarred Hostel(s): </div>{{ obj.debarred_hostel }}
+                                        </div>
+                                        <div class="col-xs-3 col-md-2">
+                                            <a class="btn btn-danger" href="{% url 'hab_app:debarred_student' %}?param4={{obj.webmail}}_{{ obj.debarred_hostel }}" role="button" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-5 col-md-5">
+                                            <div style="color:green;">Reason: </div>{{ obj.reasons }}
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <div style="color:green;">From: </div>{{ obj.start_date }}
+                                        </div>
+
+                                        <div class="col-xs-3 col-md-3">
+                                            <div style="color:green;">To: </div>{{ obj.end_date }}
+                                        </div>
+
+
+                                    </div>
+
+                                    <hr>
+                              {% endfor %}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+<style>
+#mess {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#mess td, #mess th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#mess tr:nth-child(even){background-color: #f2f2f2;}
+
+#mess tr:hover {background-color: #ddd;}
+
+#mess th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+.h-scroll {
+    height: 90vh; /* %-height of the viewport */
+    position: inherit;
+  /*left:650px;*/
+    overflow-y: scroll;
+}
+</style>
+
+
+{% endblock %}

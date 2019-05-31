@@ -1,0 +1,17 @@
+{% extends "hab_app/caretakerView.html" %}
+
+
+{% block body_block %}
+
+<form enctype="multipart/form-data" method="post" action="{% url 'hab_app:caretakerapproveinfo' %}" onsubmit="return validateImage();">
+  {% csrf_token %}
+  <table class="table table-striped">
+    <tbody>
+      {{ form.as_table }}
+    </tbody>
+  </table>
+  <input type="submit" name="a" value="Approve" class="btn btn-primary">
+  <input type="submit" name="d" value="Disapprove" class="btn btn-danger">
+</form>
+
+{% endblock %}

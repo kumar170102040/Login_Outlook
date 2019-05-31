@@ -1,0 +1,18 @@
+{% extends "hab_app/caretakerView.html" %}
+{% block body_block %}
+
+<strong style="color : red;align:center" align="center">Change the Start Date and End Date for Winter and Summer Break</strong>
+
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  <table class="table table-striped">
+    <tbody>
+      {{ ROedit_form.as_table }}
+    </tbody>
+  </table>
+  <input type="submit" name="" value="Save" class="btn btn-primary">
+</form>
+<script type="text/javascript">
+  document.getElementById("id_occupantId").readOnly = true;
+</script>
+{% endblock %}
